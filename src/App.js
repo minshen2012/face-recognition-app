@@ -29,6 +29,9 @@ const particlesOptions = {
 function App() {
   const [input, setInput] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [box, setBox] = useState({});
+
+  const calculateFaceLocation = (data) => {};
 
   const onInputChange = (event) => {
     setInput(event.target.value);
@@ -36,14 +39,10 @@ function App() {
 
   const onButtonSubmit = () => {
     setImageUrl(input);
-    app.models.predict(Clarifai.FACE_DETECT_MODEL, input).then(
-      function (response) {
-        console.log(
-          response.outputs[0].data.regions[0].region_info.bounding_box
-        );
-      },
-      function (err) {}
-    );
+    app.models
+      .predict(Clarifai.FACE_DETECT_MODEL, input)
+      .then((response) => calculateFaceLocation(response))
+      .catch((err) => console.log(err));
   };
 
   return (
