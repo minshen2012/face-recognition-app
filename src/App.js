@@ -8,6 +8,7 @@ import Rank from './components/Rank/Rank';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 
 import './App.css';
+import Signin from './components/Signin/Signin';
 
 const app = new Clarifai.App({
   apiKey: '6f7b13ce7adf4349ad761245d050973b',
@@ -65,6 +66,7 @@ function App() {
     <div className="App">
       <Particles className="particles" params={particlesOptions} />
       <Navigation />
+      <Signin />
       <Logo />
       <Rank />
       <ImageLinkForm
