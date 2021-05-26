@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
@@ -33,6 +33,12 @@ function App() {
   const [box, setBox] = useState({});
   const [route, setRoute] = useState('signin');
   const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    fetch('http://localhost:3001')
+      .then((response) => response.json())
+      .then(console.log);
+  });
 
   const calculateFaceLocation = (data) => {
     const clarifaiFace =
