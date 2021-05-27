@@ -33,12 +33,29 @@ function App() {
   const [box, setBox] = useState({});
   const [route, setRoute] = useState('signin');
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [user, setUser] = useState({
+    id: '',
+    name: '',
+    email: '',
+    entries: 0,
+    joined: '',
+  });
 
   useEffect(() => {
     fetch('http://localhost:3001')
       .then((response) => response.json())
       .then(console.log);
   });
+
+  const loadUser = (data) => {
+    setUser({
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      entries: data.entries,
+      joined: data.joined,
+    });
+  };
 
   const calculateFaceLocation = (data) => {
     const clarifaiFace =
@@ -97,7 +114,7 @@ function App() {
       ) : route === 'signin' ? (
         <Signin onRouteChange={onRouteChange} />
       ) : (
-        <Register onRouteChange={onRouteChange} />
+        <Register onRouteChange={onRouteChange} loadUser={loadUser} />
       )}
     </div>
   );
